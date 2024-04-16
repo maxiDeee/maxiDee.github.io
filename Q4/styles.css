@@ -1,0 +1,256 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #79c2a0;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+#headerLogo {
+    width: 150px;
+    border-radius: 50%;
+}
+
+nav {
+    background: #333;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+#sideMenu {
+    list-style: none;
+    padding: 0;
+}
+#sideMenu li {
+    padding: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+#sideMenu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 1rem;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    font-size: small;
+    text-align: center;
+    line-height: 1;
+    padding: 1rem 0;
+    width: 100%;
+}
+footer a {
+    color: #fff;
+}
+
+@media (min-width: 700px) {
+    .container {
+        flex-direction: row;
+    }
+    nav {
+        min-width: 200px;
+    }
+    main {
+        flex: 1;
+    }
+}
+
+.pet-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.pet {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 80%;
+    margin: auto;
+}
+
+.pet img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.pet h3 {
+    color: #333;
+    margin-top: 0.5rem;
+}
+
+.pet p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+button {
+    background-color: #79c2a0;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+button:hover {
+    background-color: #66b394;
+}
+
+footer {
+    background-color: #555; /* Or any other distinct color you prefer */
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+footer a {
+    color: #9ccddc; /* Light blue color for links for contrast */
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+#findPetForm, #giveawayForm {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#findPetForm label, #giveawayForm label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#findPetForm select, #giveawayForm select,
+#findPetForm input, #giveawayForm input,
+#findPetForm textarea, #giveawayForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+#findPetForm fieldset {
+    border: none;
+    margin: 20px 0;
+}
+
+#findPetForm legend {
+    padding: 0;
+    font-weight: bold;
+}
+
+#findPetForm button, #giveawayForm button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    margin-right: 10px; 
+}
+
+#findPetForm .checkbox-inline, #giveawayForm .checkbox-inline {
+    display: inline-block; 
+    margin-right: 20px; 
+}
+
+#findPetForm input[type="checkbox"], #giveawayForm input[type="checkbox"] {
+    width: auto; 
+    margin-top: 0; 
+    padding: 0; 
+    vertical-align: middle;
+}
+
+#contact-info {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contact-info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+#contact-info li {
+    margin-bottom: 10px;
+}
+
+#contact-info a {
+    color: #79c2a0; 
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#contact-form label {
+    display: block;
+    margin-top: 20px; 
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%; 
+    padding: 8px; 
+    margin-top: 5px;
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+}
+
+#contact-form textarea {
+    height: 150px; 
+    resize: vertical; 
+}
+
+#contact-form button[type="submit"] {
+    margin-top: 20px; 
+}
