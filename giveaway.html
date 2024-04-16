@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Have a Pet to Give Away - Happy Paws Adoption Center</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div id="dateTime"></div>
+        <h1>Happy Paws Adoption Center</h1>
+        <a href="index.html">
+            <img src="logo.png" alt="Happy Paws Logo" id="headerLogo">
+        </a>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul id="sideMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find.html">Find a Dog/Cat</a></li>
+                <li><a href="dogcare.html">Dog Care</a></li>
+                <li><a href="catcare.html">Cat Care</a></li>
+                <li><a href="giveaway.html">Have a Pet to Give Away</a></li>
+                <li><a href="#" id="createAccount">Create an Account</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div id="registrationArea" style="display:none;">
+                 <h2>Create Your Account</h2>
+                 <p>Please fill in the fields below to create your account.</p>
+                 <form id="registrationForm">
+                    <label for="newUsername">Username:</label>
+                    <input type="text" id="newUsername" required>
+                    <small>Only letters and digits allowed</small>
+                    <br>
+
+                    <label for="newPassword">Password:</label>
+                    <input type="password" id="newPassword" required>
+                    <small>At least 4 characters, must include at least one letter and one digit.</small>
+                    <br><br>
+
+                    <button type="button" onclick="submitRegistration()">Register</button>
+                 </form>
+                 <div id="registrationMessage"></div>
+            </div>
+
+            <form id="giveawayForm" method="post"> 
+                <h2>Have a Pet to Give Away</h2>
+                <h4>If you need to find a new loving home for your pet, please fill out this form:</h4>
+                
+                <label for="petType">Type of Pet:</label>
+                <select name="petType" id="petType" required>
+                    <option value="">Select Type</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                </select>
+    
+                <label for="breed">Breed:</label>
+                <input type="text" id="breed" name="breed" placeholder="Breed or Mix Breed" required>
+    
+                <label for="age">Age of Animal:</label>
+                <select name="age" id="age" required>
+                    <option value="">Select Age Range</option>
+                    <option value="puppy-kitten">Puppy/Kitten</option>
+                    <option value="young">Young</option>
+                    <option value="adult">Adult</option>
+                    <option value="senior">Senior</option>
+                </select>
+    
+                <label for="gender">Gender:</label>
+                <select name="gender" id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+    
+                <label><input type="checkbox" name="compatibility" value="dogs"> Gets along with other dogs</label>
+                <label><input type="checkbox" name="compatibility" value="cats"> Gets along with other cats</label>
+                <label><input type="checkbox" name="compatibility" value="children"> Suitable for a family with small children</label>
+    
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments" placeholder="Tell us about your pet" rows="4"></textarea>
+    
+                <label for="ownerName">Your Name:</label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="Full Name" required>
+    
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="youremail@example.com" required>
+    
+                <br><br>
+                <div class="buttons">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Clear</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <p>© Happy Paws Adoption Center | A Safe Home for Every Paw</p>
+        <p>For more information, please read our <a href="privacy.html">Privacy/Disclaimer Statement</a>.</p>
+    </footer>
+
+    <script>
+        function refreshTime() {
+            const timeContainer = document.getElementById('dateTime');
+            const now = new Date();
+            const timeString = now.toLocaleString('en-US', { hour12: false }); 
+            timeContainer.textContent = timeString;
+        }
+
+        setInterval(refreshTime, 1000);
+        refreshTime();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const createAccountButton = document.getElementById('createAccount');
+            if (createAccountButton) {
+                createAccountButton.addEventListener('click', function() {
+                    document.getElementById('registrationArea').style.display = 'block';
+                })
+            }
+
+            const giveawayForm = document.getElementById('giveawayForm');
+            if (giveawayForm) {
+                giveawayForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    submitGiveawayForm();
+                })
+            }
+        })
+
+        function submitRegistration() {
+            var username = document.getElementById('newUsername').value;
+            var password = document.getElementById('newPassword').value;
+            var messageArea = document.getElementById('registrationMessage');
+
+            if (!isValidUsername(username) || !isValidPassword(password)) {
+                messagearea.textContent = "Invalid username or password format. Please follow the guidelines."
+                return;
+            }
+
+            fetch('/register', {
+                method:  'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username, password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    messageArea.textContent = "Account successfully created."
+                } else {
+                    messageArea.textContent = data.message || "Failed to register. Please try a different username.";
+                }
+            })
+            .catch(error => {
+                console.error('Error', error);
+                message.textContent = "There was an error procesisng your request. Please try again.";
+            })
+        }
+
+        function isValidUsername(username) {
+            return /^[A-Za-z0-9]+$/.test(username);
+        }
+
+        function isValidPassword(password) {
+            return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/.test(password);
+        }
+
+        function submitGiveawayForm() {
+            event.preventDefault();
+
+            const giveawayForm = document.getElementById('giveawayForm');
+            const formData = new FormData(giveawayForm);
+
+            let hasErrors = false;
+            let payload = {};
+            for (let [key, value] of formData.entries()) {
+                if (!value.trim()) {
+                alert(`Please fill in the ${key}`);
+                hasErrors = true;
+                break;
+                }
+                payload[key] = value.trim();
+            }
+
+            if (!hasErrors) {
+                fetch('/submit-pet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'credentials': 'include'
+                    },
+                    body: JSON.stringify(payload)
+                })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                } else {
+                    alert('Pet submitted successfully!');
+                    giveawayForm.reset();
+                }    
+            })
+            .catch(error => {
+                console.error('There was an error submitting the pet details:', error);
+                alert('There was an error submitting the form. Please try again.');
+            });
+    }
+}
+    </script>
+</body>
+</html>

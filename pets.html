@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Available Pets - Happy Paws Adoption Center</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div id="dateTime"></div>
+        <h1>Happy Paws Adoption Center</h1>
+        <a href="index.html">
+            <img src="logo.png" alt="Happy Paws Logo" id="headerLogo">
+        </a>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul id="sideMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pets.html">Browse Available Pets</a></li>
+                <li><a href="find.html">Find a Dog/Cat</a></li>
+                <li><a href="dogcare.html">Dog Care</a></li>
+                <li><a href="catcare.html">Cat Care</a></li>
+                <li><a href="giveaway.html">Have a Pet to Give Away</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <h2>Browse Our Available Pets for Adoption</h2>
+        <div class="pet-list">
+            <div class="pet">
+                <img src="pet1.jpg" alt="Pet Name" style="width:200px; height:auto;">
+                <h3>Fluffy</h3>
+                <p>Breed: Golden Retriever</p>
+                <p>Age: 2 years</p>
+                <p>Gender: Female</p>
+                <p>Gets along with other pets: Yes</p>
+                <button>Interested</button>
+            </div>
+
+            <div class="pet">
+                <img src="pet2.jpg" alt="Pet Name" style="width:200px; height:auto;">
+                <h3>Whiskers</h3>
+                <p>Breed: Tabby Cat</p>
+                <p>Age: 1 year</p>
+                <p>Gender: Male</p>
+                <p>Gets along with other pets: Yes</p>
+                <button>Interested</button>
+            </div>
+        </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© Happy Paws Adoption Center | A Safe Home for Every Paw</p>
+        <p>For more information, please read our <a href="privacy.html">Privacy/Disclaimer Statement</a>.</p>
+    </footer>
+
+    <script>
+        function refreshTime() {
+            const timeContainer = document.getElementById('dateTime');
+            const now = new Date();
+            const timeString = now.toLocaleString('en-US', { hour12: false }); 
+            timeContainer.textContent = timeString;
+        }
+
+        setInterval(refreshTime, 1000);
+        refreshTime();
+    </script>
+</body>
+</html>
